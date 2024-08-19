@@ -1,0 +1,74 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header text-bg-dark">
+            <div class="text-center tex">INGRESE SU NÚMERO DE DOCUMENTO PARA EL RESPECTIVO REGISTRO</div>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="container ">
+    <div class="card">
+        <div class="card-header text-bg-success">
+            <div class=" tex">INGRESE EL NÚMERO DE SU DOCUMENTO</div>
+        </div>
+        <div class="card-body">
+            <div class="row mb-4 justify-content-center">
+                <div class="col-sm-12 col-md-12">
+                    <div class="col-sm-12">
+                        <!-- <label for="numeroDocumento" class="control-label text-center">Número de Documento</label> -->
+                        <input type="text" id="numeroDocumento" class="form-control text-center fs-1" [(ngModel)]="numeroDocumento" readonly>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="row justify-content-center">
+                <div class="col-sm-6 col-md-4">
+                    <div class="teclado-numerico text-center">
+                        <button class="btn btn-outline-primary m-1" (click)="agregarNumero('1')">1</button>
+                        <button class="btn btn-outline-primary m-1" (click)="agregarNumero('2')">2</button>
+                        <button class="btn btn-outline-primary m-1" (click)="agregarNumero('3')">3</button>
+                        <br />
+                        <button class="btn btn-outline-primary m-1" (click)="agregarNumero('4')">4</button>
+                        <button class="btn btn-outline-primary m-1" (click)="agregarNumero('5')">5</button>
+                        <button class="btn btn-outline-primary m-1" (click)="agregarNumero('6')">6</button>
+                        <br />
+                        <button class="btn btn-outline-primary m-1" (click)="agregarNumero('7')">7</button>
+                        <button class="btn btn-outline-primary m-1" (click)="agregarNumero('8')">8</button>
+                        <button class="btn btn-outline-primary m-1" (click)="agregarNumero('9')">9</button>
+                        <br />
+                        <button class="btn btn-outline-primary m-1" (click)="borrarNumero()">←</button>
+                        <button class="btn btn-outline-primary m-1" (click)="agregarNumero('0')">0</button>
+                        <button class="btn btn-outline-primary m-1" (click)="limpiarNumero()">C</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Botón de Registrar Asistencia -->
+            <div class="row justify-content-center mt-3">
+                <div class="col-sm-6 col-md-4 text-center">
+                    <button class="btn btn-success" (click)="registrarAsistencia()" [disabled]="numeroDocumento.length === 0">Registrar Asistencia</button>
+                </div>
+            </div>
+
+
+            <!-- Mostrar la Hora -->
+            <div class="row justify-content-center mt-3">
+                <div class="col-sm-6 col-md-4 text-center">
+                    <h2>{{ horaActual }}</h2>
+                </div>
+            </div>
+
+            <!-- Mostrar la Fecha -->
+            <div class="row justify-content-center mt-1">
+                <div class="col-sm-6 col-md-4 text-center">
+                    <h4>{{ fechaActual }}</h4>
+                </div>
+            </div>
+            
+              
+        </div>
+    </div>
+</div>

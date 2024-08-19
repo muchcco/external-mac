@@ -1,0 +1,31 @@
+#body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#principal{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.contenido-principal{
+    padding: 2em;
+    /* width: 70%; */
+    justify-content: center;
+}
+
+footer {
+    line-height:50px;
+    background:rgb(49, 49, 49);
+    position: static;
+    bottom:0;
+    left:0;
+    width:100%;
+    padding: .4em;
+    color: white;
+    font-family: "Roboto", sans-serif;
+    font-size: 13px;
+    line-height: 20px;
+  }

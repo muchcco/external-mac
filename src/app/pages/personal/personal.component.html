@@ -1,0 +1,71 @@
+<!-- Spinner -->
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true">
+  <p style="color: white"> Obteniendo datos... </p>
+</ngx-spinner>
+
+<!-- Main Container -->
+<div class="col-12">
+  <div class="card">
+    <div class="card-header text-bg-dark">
+      <div class="text-center tex">FICHA DE DATOS CENTROS MAC</div>
+    </div>
+  </div>
+</div>
+
+<br />
+
+<!-- Dato Inicial -->
+<div class="col-12">
+  <div class="card">
+    <div class="card-header text-bg-success">
+      <div class="tex">DATO INICIAL</div>
+    </div>
+    <div class="card-body">
+      <div class="form-p">
+        <div class="row col-sm-12 buut">
+
+          <!-- Centro MAC -->
+          <div class="mb-3 col-5">
+            <label for="IdTipoPersona" class="control-label">Centro MAC o Sede donde se encuentre <span class="text-danger fw-bolder">(*)</span></label>
+            <div class="input-group col-6">
+              <select name="nom_mac" [(ngModel)]="nom_mac" (change)="onCentroMacChange()" class="form-select col-6">
+                <option value="" disabled selected>-- Seleccione un Centro MAC --</option>
+                <option *ngFor="let centro of id_mac" [value]="centro.IDCENTRO_MAC">{{ centro.NOMBRE_MAC }}</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Entidad -->
+          <div class="mb-3 col-6">
+            <label for="IdTipoPersona" class="control-label">Seleccione su Entidad <span class="text-danger fw-bolder">(*)</span></label>
+            <div class="input-group col-6">
+              <select name="entidad" [(ngModel)]="options" class="form-select col-6">
+                <option value="" disabled selected>-- Seleccione una Entidad --</option>
+                <option *ngFor="let entidad of entidades" [value]="entidad.IDENTIDAD">{{ entidad.NOMBRE_ENTIDAD }}</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Tipo y Número de Documento -->
+          <div class="mb-3">
+            <div class="row col-12">
+              <label for="IdTipoPersona" class="control-label">Ingresar el tipo y número de Documento <span class="text-danger fw-bolder">(*)</span></label>
+              <div class="col-sm-4">
+                <select name="tip_doc" [(ngModel)]="tip_doc" class="form-select col-6">
+                  <option value="" disabled selected>-- Tipo de documento --</option>
+                  <option *ngFor="let tipo of id_tip_doc" [value]="tipo.IDTIPO_DOC">{{ tipo.TIPODOC_ABREV }}</option>
+                </select>
+              </div>
+              <div class="col-sm-6">
+                <input type="text" name="num_doc" [(ngModel)]="num_doc" class="form-control" placeholder="Número de Documento">
+              </div>
+              <div class="col-sm-2">
+                <button class="btn btn-primary" type="button" (click)="validarDatos()">Ingresar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,337 @@
+<div class="container">
+    <div class="card">
+      <div class="card-header text-bg-dark">
+        <div class="text-center tex">COMPLETE EL FORMULARIO</div>
+      </div>
+    </div>
+</div>
+
+<br />
+<div class="container">
+  <a href="javascript:history.back()" class="btn btn-danger">Cerrar Sesión</a>
+</div>
+<br />
+
+<div class="container ">
+    <div class="card">
+        <div class="card-header text-bg-success">
+            <div class=" tex">DATOS DE LA ENTIDAD</div>
+        </div>
+        <div class="card-body">
+            <div class="row">              
+              <div class="col-sm-5 ">
+                <div class="col-sm-12">
+                  <label for="IdTipoPersona" class="control-label">Nombre de la Entidad  </label>
+                  <input type="text" value="{{ formData.NOMBRE_ENTIDAD }}" class="form-select" disabled>
+                </div>
+              </div>
+              <div class="col-sm-5">
+                <div class="col-sm-12">
+                  <label for="IdTipoPersona" class="control-label">Sede  </label>
+                  <input type="text" value="{{ formData.NOMBRE_MAC }}" class="form-select" disabled>
+                  <input type="hidden" value="{{ formData.IDPERSONAL }}" [(ngModel)]="idpersonal" class="form-select" disabled>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="container">
+    <div class="card">
+        <div class="card-header text-bg-success">
+            <div class=" tex">DATOS PERSONALES</div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+              <div class="col-sm-4">
+                <label for="id_tipo_doc" class="control-label">Tipo de Documento </label>
+                <select name="id_tipo_doc" id="id_tipo_doc" class="form-select" [(ngModel)]="id_tipo_doc" aria-label="Tipo de Persona" maxlength="8">
+                  <option value="1" [selected]="id_tipo_doc === '1'">DNI</option>
+                  <option value="2" [selected]="id_tipo_doc === '2'">Carnet de Extranjería</option>
+                  <option value="3" [selected]="id_tipo_doc === '3'">Pasaporte</option>
+                </select>
+              </div>
+              <div class="col-sm-4">
+                <label for="num_doc" class="control-label">Nro. Documento </label>
+                <input type="text" class="form-control" name="num_doc" [(ngModel)]="num_doc" value="{{ formData.NUM_DOC }}" disabled>
+              </div>
+              <div class="col-sm-4">
+                <label for="sexo" class="control-label">Sexo </label>
+                <select name="sexo" id="sexo" class="form-select"  [(ngModel)]="sexo">
+                  <option value="1"  [selected]="sexo === '1'">Hombre</option>
+                  <option value="2"  [selected]="sexo === '2'">Mujer</option>                        
+                </select>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label for="ape_pat" class="control-label">Apellido Paterno </label>
+                    <input type="text" class="form-control" name="ape_pat" [(ngModel)]="ape_pat" [value]="formData.APE_PAT">                  
+                </div>
+                <div class="col-sm-4">
+                    <label for="ape_mat" class="control-label">Apellido Materno </label>
+                    <input type="text" class="form-control" name="ape_mat" [(ngModel)]="ape_mat" value="{{ formData.APE_MAT }}">                  
+                </div>
+                <div class="col-sm-4">
+                    <label for="nombre" class="control-label">Nombres </label>
+                    <input type="text" class="form-control" name="nombre" [(ngModel)]="nombre" [value]="formData.NOMBRE">                  
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                  <label for="celular" class="control-label">Celular </label>
+                  <input type="text" class="form-control" name="celular" [(ngModel)]="celular" onkeypress="return isNumber(event)" value="{{ formData.CELULAR }}">                  
+              </div>
+              <div class="col-sm-4">
+                  <label for="telefono" class="control-label">Teléfono</label>
+                  <input type="text" class="form-control" name="telefono" [(ngModel)]="telefono" onkeypress="return isNumber(event)" value="{{ formData.TELEFONO }}">                 
+              </div>                  
+              <div class="col-sm-4">
+                  <label for="correo" class="control-label">Correo </label>
+                  <input type="text" class="form-control" name="correo" [(ngModel)]="correo" value="{{ formData.CORREO }}">                  
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <label for="direccion" class="control-label">Dirección Actual </label>
+                <input type="text" class="form-control" name="direccion" [(ngModel)]="direccion" value="{{ formData.DIRECCION }}">                  
+              </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-4">
+                    <label for="departamentoSeleccionado" class="control-label">Departamento (actual)</label>
+                    <select name="departamentoSeleccionado" [(ngModel)]="departamentoSeleccionado" (change)="onDepartmentChange()" class="form-select col-6">
+                      <option value="" disabled>-- Seleccione una opción --</option>
+                      <option *ngFor="let depa of departamentos" [value]="depa.IDDEPARTAMENTO">{{ depa.NAME_DEPARTAMENTO }}</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <label for="provinciaSeleccionada" class="control-label">Provincia (actual)</label>
+                    <select class="form-select form-select-solid" name="provinciaSeleccionada" [(ngModel)]="provinciaSeleccionada" (change)="onProvinceChange()">                          
+                      <option value="" disabled>-- Seleccione una provincia --</option>
+                      <option *ngFor="let prov of provincias" [value]="prov.IDPROVINCIA">{{ prov.NAME_PROVINCIA }}</option>
+                    </select> 
+                </div>
+                <div class="col-sm-4">
+                    <label for="distritoSeleccionado" class="control-label">Distrito (actual)</label>
+                    <select class="form-select form-select-solid" name="distritoSeleccionado" [(ngModel)]="distritoSeleccionado">
+                        <option value="" >-- Seleccione un distrito --</option>
+                        <option *ngFor="let dist of distritos" [value]="dist.IDDISTRITO">{{ dist.NAME_DISTRITO }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="raya"></div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label for="fech_nacimiento" class="control-label">Fecha de Nacimiento </label>
+                    <input type="date" class="form-control" name="fech_nacimiento" [(ngModel)]="fech_nacimiento" value="{{ formData.FECH_NACIMIENTO }}">                  
+                </div>
+                <div class="col-sm-4">
+                    <label for="ecivil" class="control-label">Estado Civil </label>                      
+                    <select name="ecivil" id="ecivil" class="form-select"  [(ngModel)]="ecivil">
+                      <option value="1"  [selected]="ecivil === '1'">Soltero(a)</option>
+                      <option value="2"  [selected]="ecivil === '2'">Casado(a)</option>                        
+                      <option value="3"  [selected]="ecivil === '3'">Divorciado(a)</option>                        
+                      <option value="4"  [selected]="ecivil === '4'">Viudo(a)</option>
+                      <option value="5"  [selected]="ecivil === '4'">Conviviente</option>       
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <label for="df_n_hijos" class="control-label">Número de Hijos</label>
+                    <input type="text" class="form-control" name="df_n_hijos" [(ngModel)]="df_n_hijos"  value="{{ formData.DF_N_HIJOS }}">                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label for="pcm_talla" class="control-label">Talla de polo </label>
+                    <!-- <input type="text" class="form-control" name="pcm_talla" [(ngModel)]="pcm_talla"  value="{{ formData.PCM_TALLA }}">   -->
+                    <select name="pcm_talla" id="pcm_talla" class="form-select"  [(ngModel)]="pcm_talla">
+                      <option value="XXS"  [selected]="pcm_talla === 'XXS'">XXS</option>
+                      <option value="XS"  [selected]="pcm_talla === 'XS'">XS</option>                        
+                      <option value="S"  [selected]="pcm_talla === 'S'">S</option>                        
+                      <option value="M"  [selected]="pcm_talla === 'M'">M</option>
+                      <option value="L"  [selected]="pcm_talla === 'L'">L</option>
+                      <option value="XL"  [selected]="pcm_talla === 'XL'">XL</option>
+                      <option value="XXL"  [selected]="pcm_talla === 'XXL'">XXL</option>
+                      <option value="XXXL"  [selected]="pcm_talla === 'XXXL'">XXXL</option>
+                    </select>                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="container">
+    <div class="card">
+        <div class="card-header text-bg-success">
+            <div class=" tex">DATOS DEL TRABAJADOR</div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-4">
+                    <label for="cargoSeleccionado" class="control-label">Cargo </label>
+                    <select class="form-select form-select-solid" name="cargoSeleccionado" [(ngModel)]="cargoSeleccionado">
+                    <option value="" disabled>-- Seleccione un cargo --</option>
+                    <option *ngFor="let ca of cargos" [value]="ca.IDCARGO_PERSONAL">{{ ca.NOMBRE_CARGO }}</option>
+                  </select>
+                </div>
+                <div class="col-sm-4">
+                    <label for="dp_fecha_ingreso" class="control-label">Fecha de Ingreso al centro MAC </label>
+                    <input type="date" class="form-control" name="dp_fecha_ingreso" [(ngModel)]="dp_fecha_ingreso"  value="{{ formData.PD_FECHA_INGRESO }}" >
+                </div>
+                <div class="col-sm-4">
+                    <label for="n_modulo" class="control-label">N° de módulo de atención <span class="text-info fw-bolder">(*)</span></label>
+                    <input type="text" class="form-control" name="n_modulo" [(ngModel)]="n_modulo" value="{{ formData.NUMERO_MODULO }}" >
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-4">
+                    <label for="tlv_id" class="control-label">Modalidad de contrato </label>
+                    <select name="tlv_id" id="tlv_id" class="form-select"  [(ngModel)]="tlv_id">
+                      <option value="1"  [selected]="tlv_id === '1'">CAS (Contrato administrativo de servicios)</option>
+                      <option value="2"  [selected]="tlv_id === '2'">Régimen laboral de actividad privada</option>                        
+                      <option value="3"  [selected]="tlv_id === '3'">mpleado público</option>                        
+                      <!-- <option value="4"  [selected]="ecivil === '4'">Otros</option>        -->
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <label for="n_contrato" class="control-label">Número de contrato<span class="text-success fw-bolder">(*)</span></label>
+                    <input type="text" class="form-control" name="n_contrato" [(ngModel)]="n_contrato"  value="{{ formData.N_CONTRATO }}">
+                </div>
+                <div class="col-sm-4">
+                    <label for="tip_cas" class="control-label">De ser CAS  <span class="text-success fw-bolder">(*)</span></label>
+                    <select name="tip_cas" id="tip_cas" class="form-select"  [(ngModel)]="tip_cas">
+                      <option value=""  selected>-- Seleccione una opcion --</option>
+                      <option value="1"  [selected]="tip_cas === '1'">PERMANENTE</option>
+                      <option value="2"  [selected]="tip_cas === '2'">TEMPORAL</option>
+                    </select>
+                </div>
+            </div>
+            <div class="raya"></div>
+            <h5>Datos profesionales</h5>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label for="gi_id" class="control-label">Grado</label>
+                    <select name="gi_id" [(ngModel)]="gi_id" class="form-select" >
+                      <option value="1" [selected]="gi_id === '1'">Técnico incompleto</option>
+                      <option value="2" [selected]="gi_id === '2'">Técnico completo</option>
+                      <option value="3" [selected]="gi_id === '3'">Superior incompleto</option>
+                      <option value="4" [selected]="gi_id === '4'">Superior completo</option>
+                      <option value="5" [selected]="gi_id === '5'">Post grado</option>
+                      <option value="6" [selected]="gi_id === '6'">Otros</option>
+                    </select>
+                </div>
+                <div class="col-sm-8">
+                    <label for="gi_carrera" class="control-label">Carrera / Profesión  </label>
+                    <input type="text" class="form-control" name="gi_carrera" [(ngModel)]="gi_carrera"  value="{{ formData.GI_CARRERA }}">
+                </div>
+            </div>
+              <div class="row">
+                  <div class="col-sm-12">
+                      <label for="gi_curso_esp" class="control-label">Cursos de especialización (opcional)</label>
+                      <input type="text" class="form-control" name="gi_curso_esp" [(ngModel)]="gi_curso_esp"  value="{{ formData.GI_CURSO_ESP }}">
+                  </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="container">
+  <div class="card">
+    <div class="card-header text-bg-success">
+      <div class=" tex">DATOS LABORALES Y PROFESIONALES</div>
+  </div>
+    <div class="card-body">
+      <div class="row">
+          <div class="col-sm-4">
+              <label for="dlp_jefe_inmediato" class="control-label">Jefe inmediato superior </label>
+              <input type="text" class="form-control" name="dlp_jefe_inmediato" [(ngModel)]="dlp_jefe_inmediato" value="{{ formData.DLP_JEFE_INMEDIATO }}">            
+          </div>
+          <div class="col-sm-4">
+              <label for="dlp_cargo" class="control-label">Cargo </label>
+              <input type="text" class="form-control" name="dlp_cargo" [(ngModel)]="dlp_cargo" value="{{ formData.DLP_CARGO }}">           
+          </div>
+          <div class="col-sm-4">
+              <label for="dlp_telefono" class="control-label">Teléfono</label>
+              <input type="text" class="form-control" name="dlp_telefono" [(ngModel)]="dlp_telefono" value="{{ formData.DLP_TELEFONO }}">
+          </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<BR />
+
+<div class="container">
+  <div class="card">
+    <div class="card-header text-bg-success">
+      <div class=" tex">DOCUMENTOS ADJUNTOS</div>
+  </div>
+    <div class="card-body">
+      
+      <div class="carp">
+        <div class="form-p">
+            <div class="row col-sm-6 buut">
+                <div class="mb-3">
+                <label for="dni" class="control-label">Foto </label>
+                    <div class="col-sm-12">
+                        <input type="file" class="form-control" name="dni" (change)="onFileChange($event)">
+                        <!-- <span class="messages text-danger" id="msm-file-error">Tiene que cargar un Archivo en PDF</span> -->
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row col-sm-6 buut">
+                <div class="mb-3">
+                <label for="TipoDoc" class="control-label">Curriculum no documentado </label>
+                    <div class="col-sm-12">
+                        <div class="sub-title">Example 2</div>
+                        <input type="file" class="form-control" name="cv" id="cv">
+                        <span class="messages text-danger" id="msm-file-error">Tiene que cargar un Archivo</span>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+      </div>
+
+      <div class="carp">
+        <div class="form-p btn_enviar">
+          <div class="row col-sm-2 buut">
+            <div class="">
+              <button type="button" class="form-control btn btn-danger" (click)="btnEnviar()" [disabled]="isSubmitting">{{ isSubmitting ? 'Enviando...' : 'ENVIAR' }}</button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="carp">
+        <div class="form-p">
+          <div class="row col-sm-3 buut">
+            <div class="mb-3">
+              <label for="TipoDoc" class="control-label">Nota:</label>
+              
+            </div>
+          </div>
+          <div class="row col-sm-8 buut">
+            <div class="mb-3">
+              <ul>
+                <li>Para el documento principal el formato debe ser pdf, y tamaño máximo de 50MB</li>
+                <li>Para los campos que estan con este caracter <span class="text-success fw-bolder">(*)</span>, son campos obligatorios para personal PCM</li>
+                <li>Para los campos que estan con este caracter <span class="text-info fw-bolder">(*)</span>, son campos obligatorios para asesores de servicio</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
