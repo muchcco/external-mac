@@ -1,6 +1,7 @@
 {
   "routes": [
     "/",
+    "/assists",
     "/formdata",
     "/pages",
     "/personal"

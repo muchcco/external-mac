@@ -148,15 +148,15 @@
                 <div class="col-sm-4">
                     <label for="pcm_talla" class="control-label">Talla de polo </label>
                     <!-- <input type="text" class="form-control" name="pcm_talla" [(ngModel)]="pcm_talla"  value="{{ formData.PCM_TALLA }}">   -->
-                    <select name="pcm_talla" id="pcm_talla" class="form-select"  [(ngModel)]="pcm_talla">
-                      <option value="XXS"  [selected]="pcm_talla === 'XXS'">XXS</option>
-                      <option value="XS"  [selected]="pcm_talla === 'XS'">XS</option>                        
-                      <option value="S"  [selected]="pcm_talla === 'S'">S</option>                        
-                      <option value="M"  [selected]="pcm_talla === 'M'">M</option>
-                      <option value="L"  [selected]="pcm_talla === 'L'">L</option>
-                      <option value="XL"  [selected]="pcm_talla === 'XL'">XL</option>
-                      <option value="XXL"  [selected]="pcm_talla === 'XXL'">XXL</option>
-                      <option value="XXXL"  [selected]="pcm_talla === 'XXXL'">XXXL</option>
+                    <select name="pcm_talla" id="pcm_talla" class="form-select"  [(ngModel)]="pcm_talla" translate="no" lang="es">
+                      <option value="XXS"  [selected]="pcm_talla === 'XXS'">XXS </option>
+                      <option value="XS"  [selected]="pcm_talla === 'XS'">XS </option>                        
+                      <option value="S"  [selected]="pcm_talla === 'S'">S </option>                        
+                      <option value="M"  [selected]="pcm_talla === 'M'">M </option>
+                      <option value="L"  [selected]="pcm_talla === 'L'">L </option>
+                      <option value="XL"  [selected]="pcm_talla === 'XL'">XL </option>
+                      <option value="XXL"  [selected]="pcm_talla === 'XXL'">XXL </option>
+                      <option value="XXXL"  [selected]="pcm_talla === 'XXXL'">XXXL </option>
                     </select>                
                 </div>
             </div>
@@ -193,15 +193,16 @@
                 <div class="col-sm-4">
                     <label for="tlv_id" class="control-label">Modalidad de contrato </label>
                     <select name="tlv_id" id="tlv_id" class="form-select"  [(ngModel)]="tlv_id">
-                      <option value="1"  [selected]="tlv_id === '1'">CAS (Contrato administrativo de servicios)</option>
-                      <option value="2"  [selected]="tlv_id === '2'">Régimen laboral de actividad privada</option>                        
-                      <option value="3"  [selected]="tlv_id === '3'">mpleado público</option>                        
+                      <option value="1"  [selected]="tlv_id === '1'">Decreto legislativo 1057-CAS</option>
+                      <option value="2"  [selected]="tlv_id === '2'">Decreto Legislativo N°276</option>                        
+                      <option value="3"  [selected]="tlv_id === '3'">Decreto Legislativo N°728</option> 
+                      <option value="4"  [selected]="tlv_id === '4'">Servicios no Personales-SNP</option>                        
                       <!-- <option value="4"  [selected]="ecivil === '4'">Otros</option>        -->
                     </select>
                 </div>
                 <div class="col-sm-4">
                     <label for="n_contrato" class="control-label">Número de contrato<span class="text-success fw-bolder">(*)</span></label>
-                    <input type="text" class="form-control" name="n_contrato" [(ngModel)]="n_contrato"  value="{{ formData.N_CONTRATO }}">
+                    <input type="text" class="form-control" name="n_contrato" [(ngModel)]="n_contrato"  value="{{ formData.N_CONTRATO }}" placeholder="Nº xxx-CAS-20xx-PCM-ORH">
                 </div>
                 <div class="col-sm-4">
                     <label for="tip_cas" class="control-label">De ser CAS  <span class="text-success fw-bolder">(*)</span></label>

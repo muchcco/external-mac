@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import{a as n}from"./chunk-ETI3EQHQ.mjs";import"./chunk-KGNXV6JG.mjs";import{h as i}from"./chunk-AOVB75UK.mjs";import{Ka as e,db as m,l as t,r}from"./chunk-XQN6XOTR.mjs";import"./chunk-OOXRSCGJ.mjs";import"./chunk-5XUXGTUW.mjs";var d=[{path:"",component:n}],M=(()=>{class o{static \u0275fac=function(a){return new(a||o)};static \u0275mod=r({type:o});static \u0275inj=t({imports:[e,m.forChild(d),i]})}return o})();export{M as FormdataModule};
