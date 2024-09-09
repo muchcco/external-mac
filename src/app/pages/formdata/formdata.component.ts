@@ -15,6 +15,9 @@ export class FormdataComponent implements OnInit {
     provincias: any[] = []; 
     distritos: any[] = [];
     cargos: any[] = []; 
+    modulos: any[] = []; 
+    i_ingles: any[] = []; 
+    i_quechua: any[] = []; 
     dniFile: File | null = null;
     isSubmitting: boolean = false;
 
@@ -49,6 +52,11 @@ export class FormdataComponent implements OnInit {
     departamentoSeleccionado: string = '';
     provinciaSeleccionada: string = '';
     distritoSeleccionado: string = '';
+    moduloSeleccionado: string = '';
+    inglesSeleccionado: string = '';
+    quechuaSeleccionado: string = '';
+
+    shouldShowModulo: boolean = true;
     
     // Definición del diccionario para los nombres amigables
     fieldLabels: { [key: string]: string } = {
@@ -69,7 +77,7 @@ export class FormdataComponent implements OnInit {
       PCM_TALLA: 'Talla de Polo',
       CARGOSELECCIONADO: 'Cargo',
       DP_FECHA_INGRESO: 'Fecha de Ingreso',
-      NUMERO_MODULO: 'Número de Módulo',
+      IDMODULO: 'Número de Módulo',
       TLV_ID: 'Modalidad de Contrato',
       N_CONTRATO: 'Número de Contrato',
       GI_ID: 'Grado',
@@ -98,12 +106,18 @@ export class FormdataComponent implements OnInit {
           this.formData = response.personal;
           this.departamentos = response.departamentos;
           this.cargos = response.cargos;
+          this.modulos = response.modulos;
+          this.i_ingles = response.i_ingles;
+          this.i_quechua = response.i_quechua;
 
           // Inicializa los valores seleccionados si existen
           this.cargoSeleccionado = this.formData.IDCARGO_PERSONAL;
           this.departamentoSeleccionado = this.formData.DEPARTAMENTO_ID;
           this.provinciaSeleccionada = this.formData.PROVINCIA_ID;
           this.distritoSeleccionado = this.formData.IDDISTRITO;
+          this.moduloSeleccionado = this.formData.IDMODULO;
+          this.inglesSeleccionado = this.formData.I_INGLES;
+          this.quechuaSeleccionado = this.formData.I_QUECHUA;
 
           this.id_tipo_doc = this.formData.IDTIPO_DOC;
           this.sexo = this.formData.SEXO;
@@ -132,6 +146,8 @@ export class FormdataComponent implements OnInit {
           this.dlp_jefe_inmediato = this.formData.DLP_JEFE_INMEDIATO;
           this.dlp_cargo = this.formData.DLP_CARGO;
           this.dlp_telefono = this.formData.DLP_TELEFONO;
+
+          this.shouldShowModulo = this.formData.IDENTIDAD !== 17;
           
           // Carga las provincias y distritos si ya hay un distrito seleccionado
           if (this.departamentoSeleccionado) {
@@ -215,7 +231,7 @@ export class FormdataComponent implements OnInit {
         formData.append('pcm_talla', this.pcm_talla);
         formData.append('cargoSeleccionado', this.cargoSeleccionado);
         formData.append('dp_fecha_ingreso', this.dp_fecha_ingreso);
-        formData.append('n_modulo', this.n_modulo);
+        // formData.append('n_modulo', this.n_modulo);
         formData.append('tlv_id', this.tlv_id);
         formData.append('n_contrato', this.n_contrato);
         formData.append('gi_id', this.gi_id);
@@ -225,6 +241,9 @@ export class FormdataComponent implements OnInit {
         formData.append('dlp_cargo', this.dlp_cargo);
         formData.append('dlp_telefono', this.dlp_telefono);
         formData.append('tip_cas', this.tip_cas);
+        formData.append('moduloSeleccionado', this.moduloSeleccionado);
+        formData.append('inglesSeleccionado', this.inglesSeleccionado);
+        formData.append('quechuaSeleccionado', this.quechuaSeleccionado);
     
         // Agrega el archivo PDF
         if (this.dniFile) {

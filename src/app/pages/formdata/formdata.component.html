@@ -184,10 +184,13 @@
                     <label for="dp_fecha_ingreso" class="control-label">Fecha de Ingreso al centro MAC </label>
                     <input type="date" class="form-control" name="dp_fecha_ingreso" [(ngModel)]="dp_fecha_ingreso"  value="{{ formData.PD_FECHA_INGRESO }}" >
                 </div>
-                <div class="col-sm-4">
-                    <label for="n_modulo" class="control-label">N° de módulo de atención <span class="text-info fw-bolder">(*)</span></label>
-                    <input type="text" class="form-control" name="n_modulo" [(ngModel)]="n_modulo" value="{{ formData.NUMERO_MODULO }}" >
-                </div>
+                <div class="col-sm-4" *ngIf="shouldShowModulo">
+                  <label for="n_modulo" class="control-label">N° de módulo de atención <span class="text-info fw-bolder">(*)</span></label>
+                  <select class="form-select" name="moduloSeleccionado" [(ngModel)]="moduloSeleccionado">
+                      <option value="" disabled>-- Seleccione un módulo --</option>
+                      <option *ngFor="let mod of modulos" [value]="mod.IDMODULO">{{ mod.N_MODULO }}</option>
+                  </select>
+              </div>
             </div>
             <div class="row mb-3">
                 <div class="col-sm-4">
@@ -262,6 +265,39 @@
           <div class="col-sm-4">
               <label for="dlp_telefono" class="control-label">Teléfono</label>
               <input type="text" class="form-control" name="dlp_telefono" [(ngModel)]="dlp_telefono" value="{{ formData.DLP_TELEFONO }}">
+          </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<BR />
+
+<div class="container">
+  <div class="card">
+    <div class="card-header text-bg-success">
+      <div class=" tex">IDIOMAS</div>
+  </div>
+    <div class="card-body">
+      <div class="row">
+          <div class="col-sm-4">
+              <label for="i_ingles" class="control-label">Ingles</label>
+              <select name="i_ingles" [(ngModel)]="inglesSeleccionado" class="form-select" >
+                <option value="1" [selected]="inglesSeleccionado === '1'">No</option>
+                <option value="2" [selected]="inglesSeleccionado === '2'">Básico</option>
+                <option value="3" [selected]="inglesSeleccionado === '3'">Intermedio</option>
+                <option value="4" [selected]="inglesSeleccionado === '4'">Avanzado</option>
+              </select>
+          </div>
+          <div class="col-sm-4">
+            <label for="i_quechua" class="control-label">Ingles</label>
+            <select name="i_quechua" [(ngModel)]="quechuaSeleccionado" class="form-select" >
+              <option value="1" [selected]="quechuaSeleccionado === '1'">No</option>
+              <option value="2" [selected]="quechuaSeleccionado === '2'">Básico</option>
+              <option value="3" [selected]="quechuaSeleccionado === '3'">Intermedio</option>
+              <option value="4" [selected]="quechuaSeleccionado === '4'">Avanzado</option>
+            </select>          
           </div>
       </div>
 
