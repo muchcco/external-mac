@@ -1,8 +1,7 @@
-import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
   CommonModule,
   NgTemplateOutlet
-} from "./chunk-VJI3EWQN.js";
+} from "./chunk-7VFNRDEH.js";
 import {
   ApplicationRef,
   ChangeDetectionStrategy,
@@ -21,7 +20,6 @@ import {
   Output,
   TemplateRef,
   ViewContainerRef,
-  require_cjs,
   setClassMetadata,
   ɵɵNgOnChangesFeature,
   ɵɵdefineComponent,
@@ -35,20 +33,18 @@ import {
   ɵɵlistener,
   ɵɵproperty,
   ɵɵtemplate
-} from "./chunk-FTYUKA7H.js";
+} from "./chunk-ZAM4Z4FJ.js";
 import {
-  require_operators
-} from "./chunk-Q5BPYVZH.js";
+  Subject,
+  takeUntil
+} from "./chunk-4VKNL667.js";
 import {
   __async,
   __spreadProps,
-  __spreadValues,
-  __toESM
-} from "./chunk-NQ4HTGF6.js";
+  __spreadValues
+} from "./chunk-3OV72XIM.js";
 
 // node_modules/@sweetalert2/ngx-sweetalert2/fesm2022/sweetalert2-ngx-sweetalert2.mjs
-var import_rxjs = __toESM(require_cjs(), 1);
-var import_operators = __toESM(require_operators(), 1);
 function SwalPortalComponent_ng_container_0_Template(rf, ctx) {
   if (rf & 1) {
     ɵɵelementContainer(0);
@@ -932,10 +928,10 @@ var SwalDirective = class _SwalDirective {
     if (this.swalOptions) {
       this.swalInstance.swalOptions = this.swalOptions;
     }
-    const swalClosed = new import_rxjs.Subject();
-    this.swalInstance.confirm.asObservable().pipe((0, import_operators.takeUntil)(swalClosed)).subscribe((v) => this.confirm.emit(v));
-    this.swalInstance.deny.asObservable().pipe((0, import_operators.takeUntil)(swalClosed)).subscribe((v) => this.deny.emit(v));
-    this.swalInstance.dismiss.asObservable().pipe((0, import_operators.takeUntil)(swalClosed)).subscribe((v) => this.dismiss.emit(v));
+    const swalClosed = new Subject();
+    this.swalInstance.confirm.asObservable().pipe(takeUntil(swalClosed)).subscribe((v) => this.confirm.emit(v));
+    this.swalInstance.deny.asObservable().pipe(takeUntil(swalClosed)).subscribe((v) => this.deny.emit(v));
+    this.swalInstance.dismiss.asObservable().pipe(takeUntil(swalClosed)).subscribe((v) => this.dismiss.emit(v));
     this.swalInstance.fire().then(() => swalClosed.next());
   }
   static ɵfac = function SwalDirective_Factory(t) {
@@ -1151,7 +1147,7 @@ var SwalPortalDirective = class _SwalPortalDirective {
    * Holds the component reference of the controlled SwalPortalComponent to destroy it when no longer needed.
    */
   portalComponentRef;
-  destroyed = new import_rxjs.Subject();
+  destroyed = new Subject();
   constructor(resolver, injector, app, templateRef, sweetAlert2Loader, swalTargets, swalComponent) {
     this.resolver = resolver;
     this.injector = injector;
@@ -1168,9 +1164,9 @@ var SwalPortalDirective = class _SwalPortalDirective {
   ngOnInit() {
     this.target = this.target || this.swalTargets.content;
     void this.swalComponent.update(this.target.options);
-    this.swalComponent.didRender.pipe((0, import_operators.takeUntil)(this.destroyed)).subscribe(this.didRenderHook.bind(this));
-    this.swalComponent.willOpen.pipe((0, import_operators.takeUntil)(this.destroyed)).subscribe(this.willOpenHook.bind(this));
-    this.swalComponent.didDestroy.pipe((0, import_operators.takeUntil)(this.destroyed)).subscribe(this.didDestroyHook.bind(this));
+    this.swalComponent.didRender.pipe(takeUntil(this.destroyed)).subscribe(this.didRenderHook.bind(this));
+    this.swalComponent.willOpen.pipe(takeUntil(this.destroyed)).subscribe(this.willOpenHook.bind(this));
+    this.swalComponent.didDestroy.pipe(takeUntil(this.destroyed)).subscribe(this.didDestroyHook.bind(this));
   }
   /**
    * Signal any {@link destroyed} consumer that this is over, so they can unsubscribe from the

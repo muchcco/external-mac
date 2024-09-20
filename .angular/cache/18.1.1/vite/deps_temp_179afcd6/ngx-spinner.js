@@ -1,20 +1,19 @@
-import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
   animate,
   state,
   style,
   transition,
   trigger
-} from "./chunk-FYUA4BGR.js";
+} from "./chunk-KFCY34UM.js";
 import {
   DomSanitizer
-} from "./chunk-RAUVVG4L.js";
-import "./chunk-7NRM57O3.js";
+} from "./chunk-VSDNBNDA.js";
+import "./chunk-VBLDXXWV.js";
 import {
   CommonModule,
   NgForOf,
   NgIf
-} from "./chunk-VJI3EWQN.js";
+} from "./chunk-7VFNRDEH.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -29,7 +28,6 @@ import {
   Pipe,
   ViewChild,
   makeEnvironmentProviders,
-  require_cjs,
   setClassMetadata,
   ɵɵNgOnChangesFeature,
   ɵɵStandaloneFeature,
@@ -56,19 +54,19 @@ import {
   ɵɵstyleProp,
   ɵɵtemplate,
   ɵɵviewQuery
-} from "./chunk-FTYUKA7H.js";
+} from "./chunk-ZAM4Z4FJ.js";
 import {
-  require_operators
-} from "./chunk-Q5BPYVZH.js";
+  BehaviorSubject,
+  Subject,
+  filter,
+  takeUntil
+} from "./chunk-4VKNL667.js";
 import {
   __spreadProps,
-  __spreadValues,
-  __toESM
-} from "./chunk-NQ4HTGF6.js";
+  __spreadValues
+} from "./chunk-3OV72XIM.js";
 
 // node_modules/ngx-spinner/fesm2022/ngx-spinner.mjs
-var import_rxjs = __toESM(require_cjs(), 1);
-var import_operators = __toESM(require_operators(), 1);
 var _c0 = ["overlay"];
 var _c1 = ["*"];
 function NgxSpinnerComponent_div_0_div_2_div_1_Template(rf, ctx) {
@@ -199,14 +197,14 @@ var _NgxSpinnerService = class _NgxSpinnerService {
    * @memberof NgxSpinnerService
    */
   constructor() {
-    this.spinnerObservable = new import_rxjs.BehaviorSubject(null);
+    this.spinnerObservable = new BehaviorSubject(null);
   }
   /**
    * Get subscription of desired spinner
    * @memberof NgxSpinnerService
    **/
   getSpinner(name) {
-    return this.spinnerObservable.asObservable().pipe((0, import_operators.filter)((x) => x && x.name === name));
+    return this.spinnerObservable.asObservable().pipe(filter((x) => x && x.name === name));
   }
   /**
    * To show spinner
@@ -324,7 +322,7 @@ var _NgxSpinnerComponent = class _NgxSpinnerComponent {
     this.globalConfig = globalConfig;
     this.disableAnimation = false;
     this.spinner = new NgxSpinner();
-    this.ngUnsubscribe = new import_rxjs.Subject();
+    this.ngUnsubscribe = new Subject();
     this.setDefaultOptions = () => {
       const {
         type
@@ -357,7 +355,7 @@ var _NgxSpinnerComponent = class _NgxSpinnerComponent {
     this.show = false;
   }
   initObservable() {
-    this.spinnerService.getSpinner(this.name).pipe((0, import_operators.takeUntil)(this.ngUnsubscribe)).subscribe((spinner) => {
+    this.spinnerService.getSpinner(this.name).pipe(takeUntil(this.ngUnsubscribe)).subscribe((spinner) => {
       this.setDefaultOptions();
       Object.assign(this.spinner, spinner);
       if (spinner.show) {
