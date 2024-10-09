@@ -1,0 +1,5 @@
+/angular
+/.vscode
+/src/environments
+/dist
+/node_modules
